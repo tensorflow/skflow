@@ -99,7 +99,7 @@ class TensorFlowTrainer(object):
                 feed_dict=feed_dict)
             losses.append(loss)
             print_loss_buffer.append(loss)
-            if verbose>0:
+            if verbose > 0:
                 if step % print_steps == 0:
                     avg_loss = np.mean(print_loss_buffer)
                     print_loss_buffer = []
