@@ -3,6 +3,8 @@
 [![License](https://img.shields.io/github/license/google/skflow.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 # Scikit Flow
 
+[![Join the chat at https://gitter.im/google/skflow](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/google/skflow?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a simplified interface for TensorFlow, to get people started on predictive analytics and data mining.
 
 Why TensorFlow?
