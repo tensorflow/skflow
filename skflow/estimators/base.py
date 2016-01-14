@@ -34,11 +34,9 @@ except ImportError:
 from skflow.trainer import TensorFlowTrainer, RestoredTrainer
 from skflow.io.data_feeder import setup_train_data_feeder
 from skflow.io.data_feeder import setup_predict_data_feeder
+from skflow.util.doc_utils import Appender
 
-
-class TensorFlowEstimator(BaseEstimator):
-    """Base class for all TensorFlow estimators.
-
+ESTIMATOR_COMMON_DOCSTRING = """
     Parameters:
         model_fn: Model function, that takes input X, y tensors and outputs
                   prediction and loss tensors.
@@ -74,8 +72,11 @@ class TensorFlowEstimator(BaseEstimator):
             Defaults to 5 (that is, the 5 most recent checkpoint files are kept.)
         keep_checkpoint_every_n_hours: Number of hours between each checkpoint
             to be saved. The default value of 10,000 hours effectively disables the feature.
-    """
+"""
 
+class TensorFlowEstimator(BaseEstimator):
+    """Base class for all TensorFlow estimators."""
+    @Appender(ESTIMATOR_COMMON_DOCSTRING, join='\n')
     def __init__(self, model_fn, n_classes, tf_master="", batch_size=32, steps=50, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
                  num_cores=4, verbose=1, early_stopping_rounds=None,
