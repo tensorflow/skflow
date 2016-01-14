@@ -17,13 +17,14 @@ from __future__ import division, print_function, absolute_import
 
 from sklearn.base import ClassifierMixin, RegressorMixin
 
-from skflow.estimators.base import TensorFlowEstimator
+from skflow.estimators.base import TensorFlowEstimator, ESTIMATOR_COMMON_DOCSTRING
 from skflow import models
+from skflow.util.doc_utils import Appender
 
 
 class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
     """TensorFlow Linear Regression model."""
-
+    @Appender(ESTIMATOR_COMMON_DOCSTRING, join='\n')
     def __init__(self, n_classes=0, tf_master="", batch_size=32, steps=50, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
                  num_cores=4, verbose=1, early_stopping_rounds=None,
@@ -51,7 +52,7 @@ class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
 
 class TensorFlowLinearClassifier(TensorFlowEstimator, ClassifierMixin):
     """TensorFlow Linear Classifier model."""
-
+    @Appender(ESTIMATOR_COMMON_DOCSTRING, join='\n')
     def __init__(self, n_classes, tf_master="", batch_size=32, steps=50, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
                  num_cores=4, verbose=1, early_stopping_rounds=None,
