@@ -58,7 +58,7 @@ class TensorFlowDNNClassifier(TensorFlowEstimator, ClassifierMixin):
     def __init__(self, hidden_units, n_classes, tf_master="", batch_size=32,
                  steps=50, optimizer="SGD", learning_rate=0.1,
                  tf_random_seed=42, continue_training=False,
-                 verbose=1, early_stopping_rounds=None,
+                 num_cores=4, verbose=1, early_stopping_rounds=None,
                  max_to_keep=5, keep_checkpoint_every_n_hours=10000):
         self.hidden_units = hidden_units
         super(TensorFlowDNNClassifier, self).__init__(
@@ -68,7 +68,7 @@ class TensorFlowDNNClassifier(TensorFlowEstimator, ClassifierMixin):
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training, verbose=verbose,
             early_stopping_rounds=early_stopping_rounds,
-            max_to_keep=max_to_keep,
+            num_cores=num_cores, max_to_keep=max_to_keep,
             keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
 
     def _model_fn(self, X, y):
@@ -106,7 +106,7 @@ class TensorFlowDNNRegressor(TensorFlowEstimator, RegressorMixin):
     def __init__(self, hidden_units, n_classes=0, tf_master="", batch_size=32,
                  steps=50, optimizer="SGD", learning_rate=0.1,
                  tf_random_seed=42, continue_training=False,
-                 verbose=1, early_stopping_rounds=None,
+                 num_cores=4, verbose=1, early_stopping_rounds=None,
                  max_to_keep=5, keep_checkpoint_every_n_hours=10000):
         self.hidden_units = hidden_units
         super(TensorFlowDNNRegressor, self).__init__(
@@ -116,7 +116,7 @@ class TensorFlowDNNRegressor(TensorFlowEstimator, RegressorMixin):
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training, verbose=verbose,
             early_stopping_rounds=early_stopping_rounds,
-            max_to_keep=max_to_keep,
+            num_cores=num_cores, max_to_keep=max_to_keep,
             keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
 
     def _model_fn(self, X, y):
