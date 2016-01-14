@@ -17,9 +17,9 @@ from __future__ import division, print_function, absolute_import
 
 from sklearn.base import ClassifierMixin, RegressorMixin
 
+from skflow.util.doc_utils import Appender
 from skflow.estimators.base import TensorFlowEstimator, ESTIMATOR_COMMON_DOCSTRING
 from skflow import models
-from skflow.util.doc_utils import Appender
 
 
 class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
