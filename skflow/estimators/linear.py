@@ -17,16 +17,17 @@ from __future__ import division, print_function, absolute_import
 
 from sklearn.base import ClassifierMixin, RegressorMixin
 
-from skflow.estimators.base import TensorFlowEstimator
+from skflow.util.doc_utils import Appender
+from skflow.estimators.base import TensorFlowEstimator, ESTIMATOR_COMMON_DOCSTRING
 from skflow import models
 
 
 class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
     """TensorFlow Linear Regression model."""
-
+    @Appender(ESTIMATOR_COMMON_DOCSTRING, join='\n')
     def __init__(self, n_classes=0, tf_master="", batch_size=32, steps=50, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
-                 verbose=1, early_stopping_rounds=None,
+                 num_cores=4, verbose=1, early_stopping_rounds=None,
                  max_to_keep=5, keep_checkpoint_every_n_hours=10000):
         super(TensorFlowLinearRegressor, self).__init__(
             model_fn=models.linear_regression, n_classes=n_classes,
@@ -34,7 +35,7 @@ class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
             batch_size=batch_size, steps=steps, optimizer=optimizer,
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training,
-            verbose=verbose, early_stopping_rounds=early_stopping_rounds,
+            num_cores=num_cores, verbose=verbose, early_stopping_rounds=early_stopping_rounds,
             max_to_keep=max_to_keep,
             keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
 
@@ -51,10 +52,10 @@ class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
 
 class TensorFlowLinearClassifier(TensorFlowEstimator, ClassifierMixin):
     """TensorFlow Linear Classifier model."""
-
+    @Appender(ESTIMATOR_COMMON_DOCSTRING, join='\n')
     def __init__(self, n_classes, tf_master="", batch_size=32, steps=50, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
-                 verbose=1, early_stopping_rounds=None,
+                 num_cores=4, verbose=1, early_stopping_rounds=None,
                  max_to_keep=5, keep_checkpoint_every_n_hours=10000):
         super(TensorFlowLinearClassifier, self).__init__(
             model_fn=models.logistic_regression, n_classes=n_classes,
@@ -62,7 +63,7 @@ class TensorFlowLinearClassifier(TensorFlowEstimator, ClassifierMixin):
             batch_size=batch_size, steps=steps, optimizer=optimizer,
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training,
-            verbose=verbose, early_stopping_rounds=early_stopping_rounds,
+            num_cores=num_cores, verbose=verbose, early_stopping_rounds=early_stopping_rounds,
             max_to_keep=max_to_keep,
             keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
 
