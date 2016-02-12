@@ -97,6 +97,19 @@ class TensorFlowEstimator(BaseEstimator):
         self._early_stopping_rounds = early_stopping_rounds
         self.max_to_keep = max_to_keep
         self.keep_checkpoint_every_n_hours = keep_checkpoint_every_n_hours
+        self._queue_initialized = False
+
+    def _setup_queue_runner(self, X, y):
+        # Set up data feeder.
+        self._data_feeder = setup_train_data_feeder(X, y,
+                                                    self.n_classes,
+                                                    self.batch_size)
+        # Set up queue TODO: add dtypes, shapes
+        queue = tf.RandomShuffleQueue(capacity=self.steps, name='data_feeder_queue')
+        enqueue_op = queue.enqueue(self._data_feeder.get_feed_dict_fn(
+                                   self._inp, self._out))
+        # Create queue runner to enqueue in multiple threads in parallel
+        self.q_runner = tf.train.QueueRunner(queue, [enqueue_op] * 4)
 
     def _setup_training(self):
         """Sets up graph, model and trainer."""
@@ -180,10 +193,12 @@ class TensorFlowEstimator(BaseEstimator):
         Returns:
             Returns self.
         """
-        # Sets up data feeder.
-        self._data_feeder = setup_train_data_feeder(X, y,
-                                                    self.n_classes,
-                                                    self.batch_size)
+        # # Sets up data feeder.
+        # self._data_feeder = setup_train_data_feeder(X, y,
+        #                                             self.n_classes,
+        #                                             self.batch_size)
+        if not self._queue_initialized:
+            self._setup_queue_runner(X, y)
         if not self.continue_training or not self._initialized:
             # Sets up model and trainer.
             self._setup_training()
@@ -206,8 +221,9 @@ class TensorFlowEstimator(BaseEstimator):
 
         # Train model for given number of steps.
         self._trainer.train(self._session,
-                            self._data_feeder.get_feed_dict_fn(
-                                self._inp, self._out),
+                            # TODO: Collect a sample from data feeder queue
+                            # self._data_feeder.get_feed_dict_fn(
+                            #     self._inp, self._out),
                             self.steps,
                             self._summary_writer,
                             self._summaries,
