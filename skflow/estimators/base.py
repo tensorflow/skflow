@@ -97,6 +97,20 @@ class TensorFlowEstimator(BaseEstimator):
         self._early_stopping_rounds = early_stopping_rounds
         self.max_to_keep = max_to_keep
         self.keep_checkpoint_every_n_hours = keep_checkpoint_every_n_hours
+        self._queue_runner_initialized = False
+
+    def _setup_queue_runner(self, X, y):
+        # Set up data feeder.
+        self._data_feeder = setup_train_data_feeder(X, y,
+                                                    self.n_classes,
+                                                    self.batch_size)
+        # Set up queue TODO: add dtypes, shapes
+        self._queue = tf.RandomShuffleQueue(capacity=self.steps, name='data_feeder_queue')
+        enqueue_op = queue.enqueue(self._data_feeder.get_feed_dict_fn(
+                                   self._inp, self._out))
+        # Create queue runner to enqueue in multiple threads in parallel
+        self._queue_runner = tf.train.QueueRunner(self._queue, [enqueue_op] * 4)
+        self._queue_runner_initialized = True
 
     def _setup_training(self):
         """Sets up graph, model and trainer."""
@@ -151,6 +165,12 @@ class TensorFlowEstimator(BaseEstimator):
                                            inter_op_parallelism_threads=self.num_cores,
                                            intra_op_parallelism_threads=self.num_cores))
 
+            # Create coordinator and launch queue runner threads
+            self._coordinator = tf.train.Coordinator()
+            self._enqueue_threads = self._queue_runner.create_threads(
+                self._session, coord=self._coordinator, start=True)
+
+
     def _setup_summary_writer(self, logdir):
         """Sets up the summary writer to prepare for later optional visualization."""
         self._summary_writer = tf.train.SummaryWriter(
@@ -180,10 +200,8 @@ class TensorFlowEstimator(BaseEstimator):
         Returns:
             Returns self.
         """
-        # Sets up data feeder.
-        self._data_feeder = setup_train_data_feeder(X, y,
-                                                    self.n_classes,
-                                                    self.batch_size)
+        if not self._queue_runner_initialized:
+            self._setup_queue_runner(X, y)
         if not self.continue_training or not self._initialized:
             # Sets up model and trainer.
             self._setup_training()
@@ -206,8 +224,7 @@ class TensorFlowEstimator(BaseEstimator):
 
         # Train model for given number of steps.
         self._trainer.train(self._session,
-                            self._data_feeder.get_feed_dict_fn(
-                                self._inp, self._out),
+                            self._queue.dequeue(), # get a data_feeder_dict_fn from queue
                             self.steps,
                             self._summary_writer,
                             self._summaries,
