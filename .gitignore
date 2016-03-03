@@ -60,3 +60,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# example log output
+examples/example_logs/
