@@ -27,7 +27,8 @@ class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
     def __init__(self, n_classes=0, tf_master="", batch_size=32, steps=200, optimizer="SGD",
                  learning_rate=0.1, tf_random_seed=42, continue_training=False,
                  config_addon=None, verbose=1,
-                 max_to_keep=5, keep_checkpoint_every_n_hours=10000):
+                 max_to_keep=5, keep_checkpoint_every_n_hours=10000,
+                 logdir=None, monitor=None):
 
         super(TensorFlowLinearRegressor, self).__init__(
             model_fn=models.linear_regression, n_classes=n_classes,
@@ -36,7 +37,8 @@ class TensorFlowLinearRegressor(TensorFlowEstimator, RegressorMixin):
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training, config_addon=config_addon,
             verbose=verbose, max_to_keep=max_to_keep,
-            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
+            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours,
+            logdir=logdir, monitor=monitor)
 
     @property
     def weights_(self):
@@ -55,7 +57,8 @@ class TensorFlowLinearClassifier(TensorFlowEstimator, ClassifierMixin):
     def __init__(self, n_classes, tf_master="", batch_size=32, steps=200, optimizer="SGD",
                  learning_rate=0.1, class_weight=None,
                  tf_random_seed=42, continue_training=False, config_addon=None,
-                 verbose=1, max_to_keep=5, keep_checkpoint_every_n_hours=10000):
+                 verbose=1, max_to_keep=5, keep_checkpoint_every_n_hours=10000,
+                 logdir=None, monitor=None):
 
         super(TensorFlowLinearClassifier, self).__init__(
             model_fn=models.logistic_regression, n_classes=n_classes,
@@ -65,7 +68,8 @@ class TensorFlowLinearClassifier(TensorFlowEstimator, ClassifierMixin):
             tf_random_seed=tf_random_seed,
             continue_training=continue_training, config_addon=config_addon,
             verbose=verbose, max_to_keep=max_to_keep,
-            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
+            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours,
+            logdir=logdir, monitor=monitor)
 
     @property
     def weights_(self):

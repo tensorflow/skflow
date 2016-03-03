@@ -87,6 +87,9 @@ class TensorFlowEstimator(BaseEstimator):
             Defaults to 5 (that is, the 5 most recent checkpoint files are kept.)
         keep_checkpoint_every_n_hours: Number of hours between each checkpoint
             to be saved. The default value of 10,000 hours effectively disables the feature.
+        logdir: the directory to save the log file that can be used for
+            optional visualization.
+        monitor: Monitor object to print training progress and invoke early stopping
     """
 
     def __init__(self, model_fn, n_classes, tf_master="", batch_size=32,
@@ -94,7 +97,8 @@ class TensorFlowEstimator(BaseEstimator):
                  learning_rate=0.1, class_weight=None,
                  tf_random_seed=42, continue_training=False,
                  config_addon=None, verbose=1,
-                 max_to_keep=5, keep_checkpoint_every_n_hours=10000):
+                 max_to_keep=5, keep_checkpoint_every_n_hours=10000,
+                 logdir=None, monitor=None):
 
         self.n_classes = n_classes
         self.tf_master = tf_master
@@ -111,6 +115,8 @@ class TensorFlowEstimator(BaseEstimator):
         self.keep_checkpoint_every_n_hours = keep_checkpoint_every_n_hours
         self.class_weight = class_weight
         self.config_addon = config_addon
+        self.logdir = logdir
+        self.monitor = monitor
 
     def _setup_training(self):
         """Sets up graph, model and trainer."""
@@ -165,7 +171,7 @@ class TensorFlowEstimator(BaseEstimator):
                 keep_checkpoint_every_n_hours=self.keep_checkpoint_every_n_hours)
 
             # Enable monitor to create validation data dict with appropriate tf placeholders
-            self._monitor.create_val_feed_dict(self._inp, self._out)
+            self.monitor.create_val_feed_dict(self._inp, self._out)
 
             # Create session to run model with.
             if self.config_addon is None:
@@ -178,7 +184,7 @@ class TensorFlowEstimator(BaseEstimator):
             os.path.join(logdir, datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')),
             graph_def=self._session.graph_def)
 
-    def fit(self, X, y, monitor=None, logdir=None):
+    def fit(self, X, y):
         """Builds a neural network model given provided `model_fn` and training
         data X and y.
 
@@ -195,22 +201,18 @@ class TensorFlowEstimator(BaseEstimator):
             y: vector or matrix [n_samples] or [n_samples, n_outputs]. Can be
             iterator that returns array of targets. The training target values
             (class labels in classification, real numbers in regression).
-            monitor: Monitor object to print training progress and invoke early stopping
-            logdir: the directory to save the log file that can be used for
-            optional visualization.
 
         Returns:
             Returns self.
         """
+
+        if self.monitor is None:
+            self.monitor = monitors.default_monitor()
+
         # Sets up data feeder.
         self._data_feeder = setup_train_data_feeder(X, y,
                                                     self.n_classes,
                                                     self.batch_size)
-
-        if monitor is None:
-            self._monitor = monitors.default_monitor()
-        else:
-            self._monitor = monitor
 
         if not self.continue_training or not self._initialized:
             # Sets up model and trainer.
@@ -225,10 +227,10 @@ class TensorFlowEstimator(BaseEstimator):
         # and if it's None or not (in case it was setup in a previous run).
         # It is initialized only in the case where it wasn't before and log dir
         # is provided.
-        if logdir:
+        if self.logdir:
             if (not hasattr(self, "_summary_writer") or
                     (hasattr(self, "_summary_writer") and self._summary_writer is None)):
-                self._setup_summary_writer(logdir)
+                self._setup_summary_writer(self.logdir)
         else:
             self._summary_writer = None
 
@@ -237,7 +239,7 @@ class TensorFlowEstimator(BaseEstimator):
                             self._data_feeder.get_feed_dict_fn(
                                 self._inp, self._out),
                             self.steps,
-                            self._monitor,
+                            self.monitor,
                             self._summary_writer,
                             self._summaries,
                             feed_params_fn=self._data_feeder.get_feed_params)
@@ -370,6 +372,7 @@ class TensorFlowEstimator(BaseEstimator):
             if not callable(value) and value is not None:
                 params[key] = value
         params['class_name'] = type(self).__name__
+        del params['monitor']
         model_def = json.dumps(
             params,
             default=lambda o: o.__dict__ if hasattr(o, '__dict__') else None)

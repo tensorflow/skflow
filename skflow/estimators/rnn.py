@@ -69,6 +69,9 @@ class TensorFlowRNNClassifier(TensorFlowEstimator, ClassifierMixin):
             Defaults to 5 (that is, the 5 most recent checkpoint files are kept.)
         keep_checkpoint_every_n_hours: Number of hours between each checkpoint
             to be saved. The default value of 10,000 hours effectively disables the feature.
+        logdir: the directory to save the log file that can be used for
+            optional visualization.
+        monitor: Monitor object to print training progress and invoke early stopping
      """
 
     def __init__(self, rnn_size, n_classes, cell_type='gru', num_layers=1,
@@ -79,7 +82,8 @@ class TensorFlowRNNClassifier(TensorFlowEstimator, ClassifierMixin):
                  class_weight=None,
                  tf_random_seed=42, continue_training=False,
                  config_addon=None, verbose=1,
-                 max_to_keep=5, keep_checkpoint_every_n_hours=10000):
+                 max_to_keep=5, keep_checkpoint_every_n_hours=10000,
+                 logdir=None, monitor=None):
 
         self.rnn_size = rnn_size
         self.cell_type = cell_type
@@ -97,7 +101,8 @@ class TensorFlowRNNClassifier(TensorFlowEstimator, ClassifierMixin):
             continue_training=continue_training, config_addon=config_addon,
             verbose=verbose,
             max_to_keep=max_to_keep,
-            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
+            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours,
+            logdir=logdir, monitor=monitor)
 
     def _model_fn(self, X, y):
         return models.get_rnn_model(self.rnn_size, self.cell_type,
@@ -161,6 +166,9 @@ class TensorFlowRNNRegressor(TensorFlowEstimator, RegressorMixin):
             Defaults to 5 (that is, the 5 most recent checkpoint files are kept.)
         keep_checkpoint_every_n_hours: Number of hours between each checkpoint
             to be saved. The default value of 10,000 hours effectively disables the feature.
+        logdir: the directory to save the log file that can be used for
+            optional visualization.
+        monitor: Monitor object to print training progress and invoke early stopping
    """
 
     def __init__(self, rnn_size, cell_type='gru', num_layers=1,
@@ -170,7 +178,8 @@ class TensorFlowRNNRegressor(TensorFlowEstimator, RegressorMixin):
                  steps=50, optimizer="SGD", learning_rate=0.1,
                  tf_random_seed=42, continue_training=False,
                  config_addon=None, verbose=1,
-                 max_to_keep=5, keep_checkpoint_every_n_hours=10000):
+                 max_to_keep=5, keep_checkpoint_every_n_hours=10000,
+                 logdir=None, monitor=None):
 
         self.rnn_size = rnn_size
         self.cell_type = cell_type
@@ -186,7 +195,8 @@ class TensorFlowRNNRegressor(TensorFlowEstimator, RegressorMixin):
             learning_rate=learning_rate, tf_random_seed=tf_random_seed,
             continue_training=continue_training, config_addon=config_addon,
             verbose=verbose, max_to_keep=max_to_keep,
-            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours)
+            keep_checkpoint_every_n_hours=keep_checkpoint_every_n_hours,
+            logdir=logdir, monitor=monitor)
 
     def _model_fn(self, X, y):
         return models.get_rnn_model(self.rnn_size, self.cell_type,

@@ -52,11 +52,11 @@ class BaseTest(tf.test.TestCase):
 
     def testIrisSummaries(self):
         iris = datasets.load_iris()
-        classifier = skflow.TensorFlowLinearClassifier(n_classes=3)
-        classifier.fit(iris.data, iris.target, logdir='/tmp/skflow_tests/')
+        classifier = skflow.TensorFlowLinearClassifier(
+            n_classes=3, logdir='/tmp/skflow_tests/')
+        classifier.fit(iris.data, iris.target)
         score = accuracy_score(iris.target, classifier.predict(iris.data))
         self.assertGreater(score, 0.5, "Failed with score = {0}".format(score))
-
 
     def testIrisContinueTraining(self):
         iris = datasets.load_iris()
