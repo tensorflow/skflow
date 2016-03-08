@@ -1,0 +1,5 @@
+name: "Scikit Flow"
+g3doc: {
+  sitemap_file: "_includes/nav.md"
+}
+

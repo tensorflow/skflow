@@ -1,0 +1,22 @@
+# Jekyll configuration file for Github Pages. If you are running a local
+# Jekyll server, note that his file is *NOT* reloaded automatically when you change it. If
+# you change this file, please restart your local server process.
+
+# Site settings
+title: Scikit Flow
+email: discuss@tensorflow.org
+description: > # this means to ignore newlines until "baseurl:"
+  Simplified interface for TensorFlow (mimicking Scikit Learn) for Deep Learning
+baseurl: "/skflow" # the subpath of your site, e.g. /blog
+url: "https://tensorflow.github.io" # the base hostname & protocol for your site
+twitter_username: googleresearch
+github_username:  tensorflow
+
+# Build settings
+markdown: kramdown
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
