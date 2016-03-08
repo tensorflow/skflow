@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Scikit Flow by tensorflow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Scikit Flow</h1>
+      <h2 class="project-tagline">Simplified interface for TensorFlow (mimicking Scikit Learn) for Deep Learning</h2>
+      <a href="https://github.com/tensorflow/skflow" class="btn">View on GitHub</a>
+      <a href="https://github.com/tensorflow/skflow/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tensorflow/skflow/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>|Travis-CI Build Status| |Codecov Status| |License| |PyPI version| |Join the chat at
+<a href="https://gitter.im/tensorflow/skflow%7C">https://gitter.im/tensorflow/skflow|</a></p>
+
+<h1>
+<a id="scikit-flow" class="anchor" href="#scikit-flow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scikit Flow</h1>
+
+<p>This is a simplified interface for TensorFlow, to get people started on predictive analytics and data mining.</p>
+
+<p>Library covers variety of needs from linear models to <em>Deep Learning</em> applications like text and image understanding.</p>
+
+<h2>
+<a id="why-tensorflow-" class="anchor" href="#why-tensorflow-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why <em>TensorFlow</em>? </h2>
+
+<ul>
+<li>TensorFlow provides a good backbone for building different shapes of machine learning applications. </li>
+<li>It will continue to evolve both in the distributed direction and as general pipelinining machinery.</li>
+</ul>
+
+<h2>
+<a id="why-scikit-flow-" class="anchor" href="#why-scikit-flow-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why <em>Scikit Flow</em>? </h2>
+
+<ul>
+<li>To smooth the transition from the Scikit Learn world of one-liner machine learning into the more open world of building different shapes of ML models. You can start by using fit/predict and slide into TensorFlow APIs as you are getting comfortable. </li>
+<li>To provide a set of reference models that would be easy to integrate with existing code.</li>
+</ul>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<ul>
+<li>Python: 2.7, 3.4+ </li>
+<li>Scikit learn: 0.16, 0.17, 0.18+ </li>
+<li>Tensorflow: 0.7+</li>
+</ul>
+
+<p>First, you need to make sure you have <code>TensorFlow &lt;https://github.com/tensorflow/tensorflow#installation&gt;</code>__ and <code>Scikit Learn &lt;http://scikit-learn.org/stable/install.html&gt;</code>__ installed. </p>
+
+<p>Run the following to install the stable version from PyPI:</p>
+
+<p>.. code:: bash</p>
+
+<pre><code>pip install skflow
+</code></pre>
+
+<p>Or run the following to install from the development version from Github:</p>
+
+<p>.. code:: bash</p>
+
+<pre><code>pip install git+git://github.com/tensorflow/skflow.git
+</code></pre>
+
+<h2>
+<a id="tutorial" class="anchor" href="#tutorial" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tutorial</h2>
+
+<ul>
+<li> <code>Introduction to Scikit Flow and why you want to start learning
+TensorFlow &lt;https://medium.com/@ilblackdragon/tensorflow-tutorial-part-1-c559c63c0cb1&gt;</code>__</li>
+<li> <code>DNNs, custom model and Digit recognition
+examples &lt;https://medium.com/@ilblackdragon/tensorflow-tutorial-part-2-9ffe47049c92&gt;</code>__</li>
+<li> <code>Categorical variables: One hot vs Distributed
+representation &lt;https://medium.com/@ilblackdragon/tensorflow-tutorial-part-3-c5fc0662bc08&gt;</code>__</li>
+<li> More coming soon.</li>
+</ul>
+
+<h2>
+<a id="community" class="anchor" href="#community" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Community</h2>
+
+<ul>
+<li>Twitter <code>#skflow &lt;https://twitter.com/search?q=skflow&amp;src=typd&gt;</code>__.</li>
+<li>StackOverflow with <code>skflow tag &lt;http://stackoverflow.com/questions/tagged/skflow&gt;</code>__ for questions and struggles.</li>
+<li>Github <code>issues &lt;https://github.com/tensorflow/skflow/issues&gt;</code>__ for technical discussions and feature requests. </li>
+<li>
+<code>Gitter channel &lt;https://gitter.im/tensorflow/skflow&gt;</code>__ for non-trivial discussions.</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Below are few simple examples of the API. For more examples, please see <code>examples &lt;https://github.com/tensorflow/skflow/tree/master/examples&gt;</code>__.</p>
+
+<p>General tips</p>
+
+<pre><code>
+-  It's useful to re-scale dataset before passing to estimator to 0 mean and unit standard deviation. Stochastic Gradient Descent doesn't always do the right thing when variable are very different scale.
+
+-  Categorical variables should be managed before passing input to the estimator. 
+
+Linear Classifier
+</code></pre>
+
+<p>Simple linear classification:</p>
+
+<p>.. code:: python</p>
+
+<pre><code>import skflow
+from sklearn import datasets, metrics
+
+iris = datasets.load_iris()
+classifier = skflow.TensorFlowLinearClassifier(n_classes=3)
+classifier.fit(iris.data, iris.target)
+score = metrics.accuracy_score(iris.target, classifier.predict(iris.data))
+print("Accuracy: %f" % score)
+</code></pre>
+
+<p>Linear Regressor</p>
+
+<pre><code>
+Simple linear regression:
+
+.. code:: python
+
+    import skflow
+    from sklearn import datasets, metrics, preprocessing
+
+    boston = datasets.load_boston()
+    X = preprocessing.StandardScaler().fit_transform(boston.data)
+    regressor = skflow.TensorFlowLinearRegressor()
+    regressor.fit(X, boston.target)
+    score = metrics.mean_squared_error(regressor.predict(X), boston.target)
+    print ("MSE: %f" % score)
+
+Deep Neural Network
+</code></pre>
+
+<p>Example of 3 layer network with 10, 20 and 10 hidden units respectively:</p>
+
+<p>.. code:: python</p>
+
+<pre><code>import skflow
+from sklearn import datasets, metrics
+
+iris = datasets.load_iris()
+classifier = skflow.TensorFlowDNNClassifier(hidden_units=[10, 20, 10], n_classes=3)
+classifier.fit(iris.data, iris.target)
+score = metrics.accuracy_score(iris.target, classifier.predict(iris.data))
+print("Accuracy: %f" % score)
+</code></pre>
+
+<p>Custom model</p>
+
+<pre><code>
+Example of how to pass a custom model to the TensorFlowEstimator:
+
+.. code:: python
+
+    import skflow
+    from sklearn import datasets, metrics
+
+    iris = datasets.load_iris()
+
+    def my_model(X, y):
+        """This is DNN with 10, 20, 10 hidden layers, and dropout of 0.5 probability."""
+        layers = skflow.ops.dnn(X, [10, 20, 10], keep_prob=0.5)
+        return skflow.models.logistic_regression(layers, y)
+
+    classifier = skflow.TensorFlowEstimator(model_fn=my_model, n_classes=3)
+    classifier.fit(iris.data, iris.target)
+    score = metrics.accuracy_score(iris.target, classifier.predict(iris.data))
+    print("Accuracy: %f" % score)
+
+Saving / Restoring models
+</code></pre>
+
+<p>Each estimator has a <code>save</code> method which takes folder path where all model information will be saved. For restoring you can just call <code>skflow.TensorFlowEstimator.restore(path)</code> and it will return object of your class.</p>
+
+<p>Some example code:</p>
+
+<p>.. code:: python</p>
+
+<pre><code>import skflow
+
+classifier = skflow.TensorFlowLinearRegression()
+classifier.fit(...)
+classifier.save('/tmp/tf_examples/my_model_1/')
+
+new_classifier = TensorFlowEstimator.restore('/tmp/tf_examples/my_model_2')
+new_classifier.predict(...)
+</code></pre>
+
+<p>Summaries</p>
+
+<pre><code>
+To get nice visualizations and summaries you can use ``logdir`` parameter on ``fit``. It will start writing summaries for ``loss`` and histograms for variables in your model. You can also add custom summaries in your custom model function by calling ``tf.summary`` and passing Tensors to report.
+
+.. code:: python
+
+    classifier = skflow.TensorFlowLinearRegression()
+    classifier.fit(X, y, logdir='/tmp/tf_examples/my_model_1/')
+
+Then run next command in command line:
+
+.. code:: bash
+
+    tensorboard --logdir=/tmp/tf_examples/my_model_1
+
+and follow reported url.
+
+Graph visualization: |Text classification RNN Graph|
+
+Loss visualization: |Text classification RNN Loss|
+
+More examples
+-------------
+
+See examples folder for:
+
+-  Easy way to handle categorical variables - words are just an example of categorical variable.
+-  Text Classification - see examples for RNN, CNN on word and characters.
+-  Language modeling and text sequence to sequence. 
+-  Images (CNNs) - see example for digit recognition.
+-  More &amp; deeper - different examples showing DNNs and CNNs
+
+.. |Travis-CI Build Status| image:: https://travis-ci.org/tensorflow/skflow.svg?branch=master
+   :target: https://travis-ci.org/tensorflow/skflow
+.. |Codecov Status| image:: https://codecov.io/github/tensorflow/skflow/coverage.svg?precision=2
+   :target: https://codecov.io/github/tensorflow/skflow
+.. |License| image:: https://img.shields.io/badge/license-Apache%202.0-blue.svg
+   :target: http://www.apache.org/licenses/LICENSE-2.0.html
+.. |Join the chat at https://gitter.im/tensorflow/skflow| image:: https://badges.gitter.im/Join%20Chat.svg
+   :target: https://gitter.im/tensorflow/skflow?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge
+.. |Text classification RNN Graph| image:: https://raw.githubusercontent.com/tensorflow/skflow/master/g3doc/images/text_classification_rnn_graph.png
+.. |Text classification RNN Loss| image:: https://raw.githubusercontent.com/tensorflow/skflow/master/g3doc/images/text_classification_rnn_loss.png
+.. |PyPI version| image:: https://badge.fury.io/py/skflow.svg
+   :target: http://badge.fury.io/py/skflow
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tensorflow/skflow">Scikit Flow</a> is maintained by <a href="https://github.com/tensorflow">tensorflow</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
