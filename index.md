@@ -1,3 +1,6 @@
+---
+---
+
 # Scikit Flow
 
 This is a simplified interface for TensorFlow, to get people started on predictive analytics and data mining.
@@ -22,7 +25,7 @@ Library covers variety of needs from linear models to *Deep Learning* applicatio
 - Scikit learn: 0.16, 0.17, 0.18+ 
 - Tensorflow: 0.7+
 
-First, you need to make sure you have `TensorFlow <https://github.com/tensorflow/tensorflow#installation>`__ and `Scikit Learn <http://scikit-learn.org/stable/install.html>`__ installed. 
+First, you need to make sure you have [TensorFlow](https://github.com/tensorflow/tensorflow#installation) and [Scikit Learn](http://scikit-learn.org/stable/install.html) installed. 
 
 Run the following to install the stable version from PyPI:
 
@@ -34,21 +37,18 @@ Or run the following to install from the development version from Github:
 
 ## Tutorial
 
--  `Introduction to Scikit Flow and why you want to start learning
-   TensorFlow <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-1-c559c63c0cb1>`__
--  `DNNs, custom model and Digit recognition
-   examples <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-2-9ffe47049c92>`__
--  `Categorical variables: One hot vs Distributed
-   representation <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-3-c5fc0662bc08>`__
+-  [Introduction to Scikit Flow and why you want to start learning
+   TensorFlow](https://medium.com/@ilblackdragon/tensorflow-tutorial-part-1-c559c63c0cb1)
+-  [DNNs, custom model and Digit recognition
+   examples](https://medium.com/@ilblackdragon/tensorflow-tutorial-part-2-9ffe47049c92)
+-  [Categorical variables: One hot vs Distributed
+   representation](https://medium.com/@ilblackdragon/tensorflow-tutorial-part-3-c5fc0662bc08)
 -  More coming soon.
 
 ## Community
 
-- Twitter `#skflow <https://twitter.com/search?q=skflow&src=typd>`__.
-- StackOverflow with `skflow tag <http://stackoverflow.com/questions/tagged/skflow>`__ for questions and struggles.
-- Github `issues <https://github.com/tensorflow/skflow/issues>`__ for technical discussions and feature requests. 
-- `Gitter channel <https://gitter.im/tensorflow/skflow>`__ for non-trivial discussions.
-
-## Table of Contents
-<!--#include virtual="sitemap.md" -->
+- Twitter [#skflow](https://twitter.com/search?q=skflow&src=typd).
+- StackOverflow with [skflow tag](http://stackoverflow.com/questions/tagged/skflow) for questions and struggles.
+- Github [issues](https://github.com/tensorflow/skflow/issues) for technical discussions and feature requests. 
+- [Gitter channel](https://gitter.im/tensorflow/skflow) for non-trivial discussions.
 

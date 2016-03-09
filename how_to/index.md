@@ -1,3 +1,6 @@
+---
+---
+
 # How to
 
 ## Re-generate API documentation
