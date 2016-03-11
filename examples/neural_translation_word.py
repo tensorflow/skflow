@@ -16,7 +16,7 @@
 
 from __future__ import division, print_function, absolute_import
 
-import cPickle
+from six.moves import cPickle
 import itertools
 import os
 import random
@@ -101,11 +101,11 @@ if not (os.path.exists('en.vocab') and os.path.exists('fr.vocab')):
     X_vocab_processor.fit(Xtrainff)
     print('Fitting dictionary for French...')
     y_vocab_processor.fit(ytrainff)
-    open('en.vocab', 'w').write(cPickle.dumps(X_vocab_processor))
-    open('fr.vocab', 'w').write(cPickle.dumps(y_vocab_processor))
+    open('en.vocab', 'wb').write(cPickle.dumps(X_vocab_processor))
+    open('fr.vocab', 'wb').write(cPickle.dumps(y_vocab_processor))
 else:
-    X_vocab_processor = cPickle.loads(open('en.vocab').read())
-    y_vocab_processor = cPickle.loads(open('fr.vocab').read())
+    X_vocab_processor = cPickle.loads(open('en.vocab', 'rb').read())
+    y_vocab_processor = cPickle.loads(open('fr.vocab', 'rb').read())
 print('Transforming...')
 X_train = X_vocab_processor.transform(X_train)
 y_train = y_vocab_processor.transform(y_train)

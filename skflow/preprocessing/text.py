@@ -16,7 +16,7 @@
 from __future__ import division, print_function, absolute_import
 
 import re
-import cPickle
+from six.moves import cPickle
 import six
 
 import numpy as np
@@ -202,7 +202,7 @@ class VocabularyProcessor(object):
         Args:
             filename: Path to output file.
         """
-        open(filename, 'w').write(cPickle.dumps(self))
+        open(filename, 'wb').write(cPickle.dumps(self))
 
     @classmethod
     def restore(cls, filename):
@@ -214,5 +214,5 @@ class VocabularyProcessor(object):
         Returns:
             VocabularyProcessor object.
         """
-        return cPickle.loads(open(filename).read())
+        return cPickle.loads(open(filename, 'rb').read())
 
