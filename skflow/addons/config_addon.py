@@ -36,4 +36,4 @@ class ConfigAddon(object):
                                      inter_op_parallelism_threads=num_cores,
                                      intra_op_parallelism_threads=num_cores,
                                      gpu_options=gpu_options)
-    
+
