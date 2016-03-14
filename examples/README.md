@@ -3,6 +3,7 @@
 * [Deep Neural Network Regression with Boston Data](boston.py)
 * [Convolutional Neural Networks with Digits Data](digits.py)
 * [Deep Neural Network Classification with Iris Data](iris.py)
+* [Grid search and Deep Neural Network Classification](iris_gridsearch_cv.py)
 * [Deep Neural Network with Customized Decay Function](iris_custom_decay_dnn.py)
 * [Building A Custom Model](iris_custom_model.py)
 * [Accessing Weights and Biases in A Custom Model](mnist_weights.py)
@@ -23,7 +24,7 @@
 
 ## Text classification
 
-* [Text Classification Using Recurrent Neural Networks on Words](text_classification.py) 
+* [Text Classification Using Recurrent Neural Networks on Words](text_classification.py)
 (See also [Simplified Version Using Built-in RNN Model](text_classification_builtin_rnn_model.py) using built-in parameters)
 * [Text Classification Using Convolutional Neural Networks on Words](text_classification_cnn.py)
 * [Text Classification Using Recurrent Neural Networks on Characters](text_classification_character_rnn.py)
@@ -39,4 +40,3 @@
 
 * [Character level neural language translation](neural_translation.py)
 * [Word level neural language translation](neural_translation_word.py)
-
