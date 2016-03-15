@@ -1,3 +1,11 @@
+SkFlow has been moved to Tensorflow.
+====================================
+
+SkFlow moved into http://github.com/tensorflow/tensorflow into contrib folder.
+The development will continue there. This repository will ramp down, including after next Tensorflow release we will wind down code here and just leave `from tensorflow.contrib import skflow`.
+
+Previously:
+
 |Travis-CI Build Status| |Codecov Status| |License| |PyPI version| |Join the chat at
 https://gitter.im/tensorflow/skflow|
 
