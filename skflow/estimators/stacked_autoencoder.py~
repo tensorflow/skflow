@@ -34,7 +34,7 @@ class StackedAutoEncoder:
             pass
 
     def encode(self):
-	"""Returns the final encoded learnt feature representations."""
+        """Returns the final encoded learnt feature representations."""
         ae=None
         for i in range(self.depth):
             if self.noise is None:

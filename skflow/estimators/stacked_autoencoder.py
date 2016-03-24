@@ -9,7 +9,8 @@ class StackedAutoEncoder:
         dims: array containing dimensions of each hidden layer. The size of the array will provide the no. of layers to use.
         epoch: default 1000. this is the epoch to be used for each layer-wise training
         batch_size: Mini batch size.
-        noise: "gaussian" or "mask-0.4". mask-0.4 means that 40% random input for each example will be set to 0.
+        noise: "gaussian" or "mask-0.4". mask-0.4 means that 40% random input for each example will be set to 0. if noise is not given,
+	it acts like a autoencoder without denoising capability.
      """
 
     def __init__(self, x, dims, epoch=1000, noise=None):
@@ -34,7 +35,7 @@ class StackedAutoEncoder:
             pass
 
     def encode(self):
-	"""Returns the final encoded learnt feature representations."""
+        """Returns the final encoded learnt feature representations."""
         ae=None
         for i in range(self.depth):
             if self.noise is None:
