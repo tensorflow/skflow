@@ -208,7 +208,7 @@ class TensorFlowEstimator(BaseEstimator):
                                                     self.batch_size)
 
         if monitor is None:
-            self._monitor = monitors.default_monitor()
+            self._monitor = monitors.default_monitor(verbose=self.verbose)
         else:
             self._monitor = monitor
 

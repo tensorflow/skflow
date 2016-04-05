@@ -25,9 +25,9 @@ from skflow.io.data_feeder import setup_train_data_feeder
 # pylint: disable=too-many-arguments
 # pylint: disable=attribute-defined-outside-init
 
-def default_monitor():
+def default_monitor(verbose=1):
     """returns very simple monitor object to summarize training progress"""
-    return BaseMonitor()
+    return BaseMonitor(verbose=verbose)
 
 
 class BaseMonitor(object):
