@@ -22,3 +22,4 @@ from skflow.estimators.dnn import TensorFlowDNNClassifier
 from skflow.estimators.dnn import TensorFlowDNNRegressor
 from skflow.estimators.rnn import TensorFlowRNNClassifier
 from skflow.estimators.rnn import TensorFlowRNNRegressor
+from .stacked_autoencoder import StackedAutoEncoder

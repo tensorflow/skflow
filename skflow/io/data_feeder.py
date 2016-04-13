@@ -28,6 +28,9 @@ from sklearn.utils import check_array
 from skflow.io import HAS_PANDAS, extract_pandas_data, extract_pandas_matrix, extract_pandas_labels
 from skflow.io import HAS_DASK, extract_dask_data, extract_dask_labels
 
+def get_batch(X, X_, size):
+    a = np.random.choice(len(X), size, replace=False)
+    return X[a], X_[a]
 
 def _get_in_out_shape(x_shape, y_shape, n_classes, batch_size):
     """Returns shape for input and output of the data feeder."""
