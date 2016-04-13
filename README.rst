@@ -1,8 +1,10 @@
 SkFlow has been moved to Tensorflow.
 ====================================
 
-SkFlow moved into http://github.com/tensorflow/tensorflow into contrib folder.
-The development will continue there. This repository will ramp down, including after next Tensorflow release we will wind down code here and just leave `from tensorflow.contrib import skflow`.
+SkFlow has been moved to http://github.com/tensorflow/tensorflow into contrib folder specifically located `here <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/learn/python/learn>`__.
+The development will continue there. Please submit any issues and pull requests to Tensorflow repository instead. 
+
+This repository will ramp down, including after next Tensorflow release we will wind down code here. Please see instructions on most recent installation `here <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/learn/python/learn>`__.
 
 Previously:
 
@@ -52,12 +54,14 @@ Or run the following to install from the development version from Github:
 Tutorial
 --------
 
--  `Introduction to Scikit Flow and why you want to start learning
+
+-  `Introduction to Scikit Flow and Why You Want to Start Learning
    TensorFlow <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-1-c559c63c0cb1>`__
--  `DNNs, custom model and Digit recognition
+-  `DNNs, Custom model and Digit Recognition
    examples <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-2-9ffe47049c92>`__
--  `Categorical variables: One hot vs Distributed
+-  `Categorical Variables: One Hot vs Distributed
    representation <https://medium.com/@ilblackdragon/tensorflow-tutorial-part-3-c5fc0662bc08>`__
+-  `Scikit Flow Key Features Illustrated <http://terrytangyuan.github.io/2016/03/14/scikit-flow-intro/>`__
 -  More coming soon.
 
 Community
