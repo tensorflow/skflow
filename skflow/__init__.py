@@ -13,9 +13,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import pkg_resources as pkg_rs
 import warnings
-import numpy as np
 
 try:
     from tensorflow.contrib.learn import *
