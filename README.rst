@@ -41,7 +41,7 @@ Community
 Usage
 -----
 
-Below are few simple examples of the API. For more examples, please see `examples <https://github.com/tensorflow/skflow/tree/master/examples>`__.
+Below are few simple examples of the API. For more examples, please see `examples <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/skflow>`__.
 
 General tips
 ~~~~~~~~~~~~
