@@ -4,52 +4,19 @@ SkFlow has been moved to Tensorflow.
 SkFlow has been moved to http://github.com/tensorflow/tensorflow into contrib folder specifically located `here <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/learn/python/learn>`__.
 The development will continue there. Please submit any issues and pull requests to Tensorflow repository instead. 
 
-This repository will ramp down, including after next Tensorflow release we will wind down code here. Please see instructions on most recent installation `here <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/learn/python/learn>`__.
-
-Previously:
-
-|Travis-CI Build Status| |Codecov Status| |License| |PyPI version| |Join the chat at
-https://gitter.im/tensorflow/skflow|
-
-Scikit Flow
-===========
-
-This is a simplified interface for TensorFlow, to get people started on predictive analytics and data mining.
-
-Library covers variety of needs from linear models to *Deep Learning* applications like text and image understanding.
-
-Why *TensorFlow*? 
------------------
-- TensorFlow provides a good backbone for building different shapes of machine learning applications. 
-- It will continue to evolve both in the distributed direction and as general pipelinining machinery.
-
-Why *Scikit Flow*? 
------------------
-- To smooth the transition from the Scikit Learn world of one-liner machine learning into the more open world of building different shapes of ML models. You can start by using fit/predict and slide into TensorFlow APIs as you are getting comfortable. 
-- To provide a set of reference models that would be easy to integrate with existing code.
+This repository will ramp down, including after next Tensorflow release we will wind down code here. 
+Please see instructions on most recent installation `here <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/learn/python/learn>`__.
 
 Installation
-============
+------------
 
-Dependencies
------------
-- Python: 2.7, 3.4+ 
-- Scikit learn: 0.16, 0.17, 0.18+ 
-- Tensorflow: 0.7+
+No installation needed, SkFlow has been moved into Tensorflow 0.8+.
+Make sure you have Tensorflow 0.8+ version and you can start using SkFlow right away by importing like this:
 
-First, you need to make sure you have `TensorFlow <https://github.com/tensorflow/tensorflow#installation>`__ and `Scikit Learn <http://scikit-learn.org/stable/install.html>`__ installed. 
+.. code:: python
 
-Run the following to install the stable version from PyPI:
+    import tensorflow.contrib.learn as skflow
 
-.. code:: bash
-
-    pip install skflow
-
-Or run the following to install from the development version from Github:
-
-.. code:: bash
-
-    pip install git+git://github.com/tensorflow/skflow.git
 
 Tutorial
 --------
@@ -90,7 +57,7 @@ Simple linear classification:
 
 .. code:: python
 
-    import skflow
+    import tensorflow.contrib.learn as skflow
     from sklearn import datasets, metrics
 
     iris = datasets.load_iris()
@@ -106,7 +73,7 @@ Simple linear regression:
 
 .. code:: python
 
-    import skflow
+    import tensorflow.contrib.learn as skflow
     from sklearn import datasets, metrics, preprocessing
 
     boston = datasets.load_boston()
@@ -123,7 +90,7 @@ Example of 3 layer network with 10, 20 and 10 hidden units respectively:
 
 .. code:: python
 
-    import skflow
+    import tensorflow.contrib.learn as skflow
     from sklearn import datasets, metrics
 
     iris = datasets.load_iris()
@@ -139,7 +106,7 @@ Example of how to pass a custom model to the TensorFlowEstimator:
 
 .. code:: python
 
-    import skflow
+    import tensorflow.contrib.learn as skflow
     from sklearn import datasets, metrics
 
     iris = datasets.load_iris()
@@ -163,7 +130,7 @@ Some example code:
 
 .. code:: python
 
-    import skflow
+    import tensorflow.contrib.learn as skflow
 
     classifier = skflow.TensorFlowLinearRegression()
     classifier.fit(...)
