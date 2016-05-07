@@ -113,7 +113,7 @@ Example of how to pass a custom model to the TensorFlowEstimator:
 
     def my_model(X, y):
         """This is DNN with 10, 20, 10 hidden layers, and dropout of 0.5 probability."""
-        layers = skflow.ops.dnn(X, [10, 20, 10], keep_prob=0.5)
+        layers = skflow.ops.dnn(X, [10, 20, 10], dropout=0.5)
         return skflow.models.logistic_regression(layers, y)
 
     classifier = skflow.TensorFlowEstimator(model_fn=my_model, n_classes=3)
