@@ -132,7 +132,7 @@ Some example code:
 
     import tensorflow.contrib.learn as skflow
 
-    classifier = skflow.TensorFlowLinearRegression()
+    classifier = skflow.TensorFlowLinearRegressor()
     classifier.fit(...)
     classifier.save('/tmp/tf_examples/my_model_1/')
 
@@ -146,7 +146,7 @@ To get nice visualizations and summaries you can use ``logdir`` parameter on ``f
 
 .. code:: python
 
-    classifier = skflow.TensorFlowLinearRegression()
+    classifier = skflow.TensorFlowLinearRegressor()
     classifier.fit(X, y, logdir='/tmp/tf_examples/my_model_1/')
 
 Then run next command in command line:
