@@ -503,7 +503,7 @@ class Library(Document):
   def assert_no_leftovers(self):
     """Generate an error if there are leftover members."""
     leftovers = []
-    for name in self._members.keys():
+    for name in self._members:
       if name in self._members and name not in self._documented:
         leftovers.append(name)
     if leftovers:
