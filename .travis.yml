@@ -1,15 +1,14 @@
-sudo: true
-dist: trusty
+os: linux
 
-language: python
+language: python 
 
-os:
-    - linux
+python:
+    - "2.7"
+    - "3.8"
 
 env:
-    matrix:
-        - TASK=lint
-        - TASK=nosetests
+    - TASK=lint
+    - TASK=nosetests
 
 cache:
     apt: true
@@ -28,11 +27,10 @@ addons:
             - python3-numpy
             - python3-scipy
 
-python:
-    - "2.7"
-    - "3.4"
+before_install:
+  - pip install pylint
+  - pylint .
 
-install:
-    - source scripts/travis_install.sh
+install: source scripts/travis_install.sh
 
 script: source scripts/run_tests.sh
