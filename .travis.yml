@@ -29,7 +29,7 @@ addons:
 
 before_install:
   - pip install pylint
-  - pylint .
+  - pylint skflow
 
 install: source scripts/travis_install.sh
 
