@@ -21,4 +21,3 @@ try:
                   "Use import tensorflow.contrib.learn as skflow instead.", DeprecationWarning)
 except ImportError:
     raise ImportError("Update your Tensorflow to 0.8+ to use latest skflow.")
-
